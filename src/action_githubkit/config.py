@@ -39,7 +39,22 @@ class ActionInput(BaseSettings):
         return self
 
 
-class ActionContext(BaseSettings): ...
+class ActionContext(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="github_")
+
+    event_path: str
+    event_name: str
+    repository: str
+    sha: str
+    ref: str
+    workflow: str
+    action: str
+    actor: str
+    job: str
+    run_attempt: int
+    run_number: int
+    run_id: int
+    api_url: str = "https://api.github.com"
 
 
 @cache
@@ -49,4 +64,4 @@ def get_action_input() -> ActionInput:
 
 @cache
 def get_action_context() -> ActionContext:
-    return ActionContext()
+    return ActionContext()  # pyright: ignore[reportCallIssue]

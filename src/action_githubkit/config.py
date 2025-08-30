@@ -11,6 +11,7 @@ class ActionInput(BaseSettings):
     # github app
     app_id: str | None = None
     private_key: str | None = None
+    as_installation: bool = True
 
     # oauth app
     client_id: str | None = None

@@ -42,11 +42,12 @@ def get_githubkit_config() -> Config:
 async def get_client() -> GitHub[
     AppInstallationAuthStrategy | OAuthAppAuthStrategy | ActionAuthStrategy
 ]:
+    action_input = get_action_input()
     auth = get_githubkit_auth_strategy()
     config = get_githubkit_config()
 
     client = GitHub(auth, config=config)
-    if isinstance(client.auth, AppAuthStrategy):
+    if isinstance(client.auth, AppAuthStrategy) and action_input.as_installation:
         action_context = get_action_context()
         try:
             owner, repo = action_context.repository.split("/", 1)

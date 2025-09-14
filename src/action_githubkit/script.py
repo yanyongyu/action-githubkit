@@ -26,5 +26,9 @@ def parse_script(script: str) -> CodeType:
     return compile(module_ast, filename=FILE_NAME, mode="exec")
 
 
-def run_script(script: CodeType, globals=None, locals=None):
+def run_script(
+    script: CodeType,
+    globals: dict[str, object] | None = None,
+    locals: dict[str, object] | None = None,
+):
     exec(script, globals, locals)

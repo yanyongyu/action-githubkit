@@ -5,7 +5,7 @@ requires-python = ">=3.13, <4.0"
 [[package]]
 name = "action-githubkit"
 version = "1.0.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "githubkit", extra = ["auth-app"] },
     { name = "pydantic" },

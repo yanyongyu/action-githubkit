@@ -140,13 +140,9 @@ jobs:
       - name: Download digests
         uses: actions/download-artifact@v5
         with:
-          path: /tmp/artifacts
+          path: /tmp/digests
           pattern: "*-digests"
-
-      - name: Copy digests
-        run: |
-          mkdir -p /tmp/digests
-          cp /tmp/artifacts/*-digests/* /tmp/digests
+          merge-multiple: true
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

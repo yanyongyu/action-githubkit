@@ -63,7 +63,7 @@ jobs:
       - name: Generate Image Name and Scope
         id: image
         run: |
-          echo "IMAGE=${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
+          echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
           echo "SCOPE=${{ hashFiles('**/Dockerfile') }}-${{ hashFiles('**/uv.lock') }}" >> $GITHUB_OUTPUT
           echo "ARTIFACT=docker-digests" >> $GITHUB_OUTPUT
 
@@ -71,7 +71,7 @@ jobs:
         uses: docker/metadata-action@v5
         id: metadata
         with:
-          images: ghcr.io/${{ steps.image.outputs.IMAGE }}
+          images: ${{ steps.image.outputs.IMAGE }}
 
       - name: Cache buildkit
         uses: actions/cache@v4
@@ -161,13 +161,13 @@ jobs:
       - name: Generate Image Name
         id: image
         run: |
-          echo "IMAGE=${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
+          echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
 
       - name: Generate Tags
         uses: docker/metadata-action@v5
         id: metadata
         with:
-          images: ghcr.io/${{ steps.image.outputs.IMAGE }}
+          images: ${{ steps.image.outputs.IMAGE }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr

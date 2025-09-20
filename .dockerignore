@@ -1,0 +1,8 @@
+.*/
+docker/
+tests/
+.dockerignore
+.editorconfig
+.gitignore
+.pre-commit-config.yaml
+*.md
